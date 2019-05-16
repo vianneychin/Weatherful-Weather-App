@@ -1,3 +1,3 @@
 export const ROOT = '/'
-export const HOME = '/home'
-export const TODAY = '/weather/today'
+export const HOME = '/dashboard'
+export const TODAY = '/forecast'

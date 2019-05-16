@@ -73,7 +73,15 @@ const CloudCover = styled.p`
     align-items: center;
     width: 9%;
     height: 100%;
-    justify-content: flex-start;
+    justify-content: flex-end;
+`
+const XLink = styled.a`
+    position: fixed;
+    left: 91.5%;
+    top: 1.5%;
+    font-size: 1.3em;
+    text-decoration: none;
+    color: white;
 `
 class TodayWeather extends Component {
     render() {
@@ -83,7 +91,9 @@ class TodayWeather extends Component {
         const removeDecimal = (num) => Number.parseFloat(num).toFixed(0);
         return(
             <Wrapper>
-                    <h1>12 Hour Forecast</h1>
+                    <h1>12 Hour Forecast
+                        <XLink href='/dashboard'>×</XLink>
+                    </h1>
                     <header>
                         <p>Hourly Time</p>
                         <p>Temperature</p>

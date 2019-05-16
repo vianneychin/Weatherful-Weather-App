@@ -27,7 +27,7 @@ const InputName = styled.input`
     border: 0;
     border-bottom: 2px solid white;
     color: #fff;
-    font-weight: 300;
+    font-weight: 600;
     font-size: 3em;
     padding-bottom: 8px;
     outline: 0;
@@ -78,7 +78,7 @@ class EnterName extends Component {
     render() {
         return (
             this.state.redirect
-            ? <Redirect to='/home' />
+            ? <Redirect to='/dashboard' />
             : <div>
                 <VideoBackground autoPlay={true} loop={true}>
                     <source src={Video} type="video/mp4" />

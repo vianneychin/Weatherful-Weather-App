@@ -14,9 +14,10 @@ const Home_Container = styled.div`
     align-items: center;
 `
 const Header = styled.header`
-    padding: 41vh;
+    padding-top: 25vh;
+    padding-bottom: 40vh;
     width: 100vw;
-    background: radial-gradient(circle at center, rgb(50, 50, 50) 0, black 100%);
+    background: rgb(50, 50, 50);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -55,36 +56,31 @@ const DownArrow = styled.div`
 const Clock_Container = styled.div`
     margin-top: 1%;
     font-size: 1.5em;
-        > .seconds {
-            /* font-family: 'Major Mono Display', monospace; */
-            font-family: 'Roboto', sans-serif;    margin-bottom: 5%;
-            align-self: flex-end;
-            margin-left: 1.2%;
-            margin-bottom: .8%;
-            font-weight: 300;
-            font-size: 2.2em;
-        }
         > .clock {
             color: white;
-            font-size: 4em;
-            font-family: 'Roboto', sans-serif;
-            font-weight: 300;
+            font-size: 6em;
+            font-family: 'Roboto',sans-serif;
+            font-weight: 500;
         }
 `
 const Greeting = styled.h1`
+    display: flex;
     color: white;
-    font-size: 3em;
-    font-weight: 400;
+    font-size: 6em;
+    font-weight: 300;
+    font-family: 'Roboto', sans-serif;
+    width: 100vw;
+    justify-content: center;
 `
 const Today = styled.p`
     margin-bottom: 5%;
     margin-top: 5%;
-    color: orangered;
+    color: rgb(50, 50, 50);
 `
 const DayOfWeek = styled.p`
     margin-bottom: 5%;
     margin-top: 5%;
-    color: orangered;
+    color: rgb(50, 50, 50);
 `
 const ChanceOfRain = styled.p`
     display: flex;
@@ -93,14 +89,12 @@ const ChanceOfRain = styled.p`
     margin-top: -10px;
     height: 1.3em;
     width: 5em;
-    color: orangered;
+    color: rgb(50, 50, 50);
     margin-bottom: 5%;
 `
 const Temperature = styled.p`
     font-size: 1em;
-`
-const Button = styled.button`
-    color: black;
+    font-weight: lighter;
 `
 const Weather_Day_List = styled.li`
     background-color: ${props => (props.darkerShade ? 'bisque' : 'beige')};
@@ -139,24 +133,52 @@ const Unordered_Weather_List = styled.ul`
     font-family: 'Roboto', sans-serif;
 `
 const SecondHeader = styled.header`
-    background-color: orangered;
-    opacity: .7;
+    background-color: white;
     font-family: 'Roboto', sans-serif;
-    color: white;
+    color: rgb(50, 50, 50);
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 1em;
     padding-bottom: 1em;
-        >h2:nth-child(1) {
+        > h2:nth-child(1) {
             font-size: 3em;
+        }
+        > h2:nth-child(2) {
+            font-size: 3em;
+            font-weight: 400;
         }
         > h2:nth-child(3) {
             font-size: 7em;
             font-weight: 400;
             margin-top: 1%;
         }
+        > a {
+            font-size: 3em;
+            font-weight: 100;
+            text-decoration: underline;
+            margin: 1%;
+            &:visited {
+                color: rgb(50, 50, 50); 
+            }
+        } 
+`
+const Button = styled.button`
+    /* display: none; */
+    background: none;
+    border: none;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 5.5rem;
+    font-weight: 300;
+    width: 5em;
+    height: 7rem;
+    font-size: 5rem;
+`
+const Name = styled.p`
+    display: initial;
+
 `
 class Home extends Component {
     state = {
@@ -177,11 +199,17 @@ class Home extends Component {
                     </Clock_Container>
                     <Greeting>
                         {
-                            this.state.militaryHours < 12   ? 'Good morning'
-                            : this.state.militaryHours < 19   ? 'Good afternoon'
-                            : 'Good evening'
-                        }, {this.props.username}.
+                              this.state.militaryHours < 12 ? 'Good morning, '
+                            : this.state.militaryHours < 19 ? 'Good afternoon, '
+                            : 'Good evening, '
+                        }
+                        <Name>
+                            {' ' + this.props.username}.
+                        </Name>
+                        <Button>Edit Profile</Button>
                     </Greeting>
+                    <br/>
+                    <br/>
                     <DownArrow>
                     <a>
                         <Arrow></Arrow>
@@ -199,6 +227,7 @@ class Home extends Component {
                     <h2>
                         {removeDecimal(weather.currently && weather.currently.temperature)}°F
                     </h2>
+                    <a href="/forecast">12 Hour Forecast</a>
                 </SecondHeader>
                 <Unordered_Weather_List>
                     <Weather_Day_List> 
