@@ -44,7 +44,6 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
-          {/* <Today weather={this.state.weather}/> */}
           <Route exact path={routes.ROOT} render={() => <EnterName doUpdateUser={this.doUpdateUser}/>} />
           {
             this.state.username 
@@ -54,6 +53,7 @@ class App extends Component {
             ]
             : <Redirect to={routes.ROOT} />
           }
+          <Today weather={this.state.weather}/>
         </Switch>    
       </div>
     )
