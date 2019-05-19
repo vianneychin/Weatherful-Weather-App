@@ -5,15 +5,8 @@
 </h1>
 <br>
 <h4>Description</h4>
-<p>Weatherful is a weather application made possible with Dark-Sky API.</p>
+<p>Weatherful is a weather application made possible with Dark-Sky API. Inspiration of this weather application is to create something that I would use on a daily basis. Design and inspiration comes from the Momentum chrome extenstion.</p>
 <br>
-<h2>Screenshots:</h2>
-<img src="https://i.imgur.com/bQjV8r6.png">
-<img src="https://i.imgur.com/EyO3Eob.png">
-<img src="https://i.imgur.com/ZwPMYMS.png">
-<img src="https://i.imgur.com/vNnQecj.png">
-<img src="https://i.imgur.com/0IMsXpm.png">
-
 <h2>Technologies Used:</h2>
 <ul>
   <li>React</li>
@@ -33,6 +26,13 @@
   <li>moment.js</li>
   <li>Dark-Sky API</li>
 </ul>
+<br>
+<h2>Screenshots:</h2>
+<img src="https://i.imgur.com/bQjV8r6.png">
+<img src="https://i.imgur.com/EyO3Eob.png">
+<img src="https://i.imgur.com/ZwPMYMS.png">
+<img src="https://i.imgur.com/vNnQecj.png">
+<img src="https://i.imgur.com/0IMsXpm.png">
 
 <h4>Next Steps:</h4>
 <ul>
