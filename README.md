@@ -3,8 +3,7 @@
     Weatherful
   </a>
 </h1>
-<br>
-<h4>Description</h4>
+<h4>Description:</h4>
 <p>Weatherful is a weather application made possible with Dark-Sky API. Inspiration of this weather application is to create something that I would use on a daily basis. Design and inspiration comes from the Momentum chrome extenstion.</p>
 <br>
 <h2>Technologies Used:</h2>
