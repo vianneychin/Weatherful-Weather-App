@@ -39,4 +39,5 @@
   <li>Implement a Geocoding API for changing locations.</li>
   <li>Add stellar CSS animations and transitions.</li>
   <li>Add inspirational random quotes in the dashboard page.</li>
+  <li>Change the edit profile button into an input box where you can change the name live.</li>
 </ul>
