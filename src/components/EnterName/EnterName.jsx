@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom'
 
 import styled from 'styled-components'
 import Video from './video/blue-clouds.mp4'
-import EditModal from '../EditModal/EditModal';
 
 const Button = styled.button`
     display: none;
@@ -78,7 +77,7 @@ class EnterName extends Component {
     render() {
         return (
             this.state.redirect
-            ? <Redirect to='/dashboard' />
+            ? <Redirect to='/dashboard'/>
             : <div>
                 <VideoBackground autoPlay={true} loop={true}>
                     <source src={Video} type="video/mp4" />
@@ -86,9 +85,17 @@ class EnterName extends Component {
                 <ShadeBackground/>
                 <InputNameContainer>
                     <Introduction>Hi, what's your name?</Introduction>
-                    <form onSubmit={e => this.setRedirect(e)}>
-                        <InputName onChange={e => this.changeHandler(e)} autoFocus autoComplete="off" type="text" name="username" />
-                        <Button type='submit'>Submit</Button>
+                    <form       onSubmit={e => this.setRedirect(e)}>
+                        <InputName
+                                onChange={e => this.changeHandler(e)}
+                                autoFocus
+                                autoComplete="off"
+                                type="text"
+                                name="username" 
+                        />
+                        <Button type='submit'>
+                            Submit
+                        </Button>
                     </form>
                 </InputNameContainer>
             </div>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import Moment from 'react-moment';
 import moment from 'moment'
 import styled from 'styled-components'
@@ -19,6 +20,16 @@ const Wrapper = styled.div`
         height: 2em;
         font-size: 4em;
         font-weight: 300;
+    }
+    > h1 {
+        > a {
+        position: fixed;
+        left: 91.5%;
+        top: 1.5%;
+        font-size: 1.3em;
+        text-decoration: none;
+        color: white;
+        }
     }
     > header {
         background-color: bisque;
@@ -75,14 +86,6 @@ const CloudCover = styled.p`
     height: 100%;
     justify-content: flex-end;
 `
-const XLink = styled.a`
-    position: fixed;
-    left: 91.5%;
-    top: 1.5%;
-    font-size: 1.3em;
-    text-decoration: none;
-    color: white;
-`
 class TodayWeather extends Component {
     render() {
         const {weather} = this.props
@@ -92,7 +95,7 @@ class TodayWeather extends Component {
         return(
             <Wrapper>
                     <h1>12 Hour Forecast
-                        <XLink href='/dashboard'>×</XLink>
+                        <Link to="/dashboard">×</Link>
                     </h1>
                     <header>
                         <p>Hourly Time</p>

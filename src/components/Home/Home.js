@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import EditModal from '../EditModal/EditModal'
+import EditModal            from '../EditModal/EditModal'
 import TodayWeather from '../Today/Today'
 import rainCloud from './../../img/Cloud-Rain.svg'
-
+import { Link } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
 import Clock from 'react-live-clock';
-
 const Home_Container = styled.div`
     height: 100vh;
     overflow: scroll;
@@ -22,6 +21,7 @@ const Header = styled.header`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position:relative;
 `
 const bounce = keyframes`
     0%, 20%, 50%, 80%, 100% {
@@ -159,22 +159,26 @@ const SecondHeader = styled.header`
             font-weight: 100;
             text-decoration: underline;
             margin: 1%;
+            color: rgb(50, 50, 50); 
             &:visited {
                 color: rgb(50, 50, 50); 
             }
         } 
 `
 const Button = styled.button`
-    /* display: none; */
     background: none;
     border: none;
     color: white;
-    font-family: 'Roboto', sans-serif;
-    font-size: 5.5rem;
+    font-family: 'Roboto',sans-serif;
     font-weight: 300;
-    width: 5em;
+    width: 6em;
     height: 7rem;
-    font-size: 5rem;
+    font-size: 2rem;
+    position: absolute;
+    outline: none;
+    &:hover {
+        cursor: pointer;
+    }
 `
 const Name = styled.p`
     display: initial;
@@ -182,15 +186,60 @@ const Name = styled.p`
 `
 class Home extends Component {
     state = {
-        militaryHours: parseInt(new Date().toTimeString().split(" "))
+        militaryHours: parseInt(new Date().toTimeString().split(" ")),
+        username: [],
+        nameToEdit: {
+            _id: null,
+            username: ''
+        },
+        modalOn: false
+    }
+    closeAndEdit =  async (e) => {
+        e.preventDefault()
+        try {
+            const editResponse = await fetch(`http://localhost:9000/api/weather/` + this.state.nameToEdit._id, {
+                method: 'PUT',
+                body: JSON.stringify(this.state.nameToEdit._id),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            const parsedResponse = await editResponse.json()
+            const editedName = this.state.username.map((name) => {
+                if(name._id === this.state.nameToEdit.username._id) {
+                    name = parsedResponse.data
+                }
+                return name
+            })
+        } catch(err) {
+            console.log(err)
+        }
+    }
+    handleFormChange = (e) => {
+        this.setState({
+            nameToEdit: {
+                ...this.state.nameToEdit,
+                [e.target.name]: e.target.value
+            }
+        })
+    }
+    modalHandler = () => {
+        this.setState({
+            modalOn: true
+        })
+    }
+    modalOffHandler = () =>{
+        this.setState({
+            modalOn: false
+        })
     }
     render() {
-        const moment = require('moment');
-        const dayOfWeek = (num) =>  moment.unix(num).format('dddd')
-        const {weather} = this.props
-        const removeDecimal = (num) => Number.parseFloat(num).toFixed(0);
+        const moment            = require('moment');
+        const {weather}         = this.props
+        const dayOfWeek         = (num)    =>  moment.unix(num).format('dddd')
+        const removeDecimal     = (num)    => Number.parseFloat(num).toFixed(0);
         const replaceCharacters = (string) => string.replace('/', ', ')
-        const replaceCharacter = (string) =>  string.replace('_', ' ')
+        const replaceCharacter  = (string) => string.replace('_', ' ')
         return(
             <Home_Container>
                 <Header>
@@ -201,22 +250,29 @@ class Home extends Component {
                         {
                               this.state.militaryHours < 12 ? 'Good morning, '
                             : this.state.militaryHours < 19 ? 'Good afternoon, '
-                            : 'Good evening, '
+                            :                                 'Good evening, '
                         }
                         <Name>
-                            {' ' + this.props.username}.
+                            <span>&nbsp;</span>
+                            <span>{this.props.username}.</span>
+                            <Button onClick={this.modalHandler}>edit profile</Button>
                         </Name>
-                        <Button>Edit Profile</Button>
                     </Greeting>
-                    <br/>
-                    <br/>
                     <DownArrow>
                     <a>
                         <Arrow></Arrow>
                     </a>
                     </DownArrow>
+                    {this.state.modalOn
+                        ? <EditModal 
+                                modalOffHandler ={this.modalOffHandler}
+                                nameToEdit      ={this.state.nameToEdit}
+                                closeAndEdit    ={this.closeAndEdit}
+                                handleFormChange={this.handleFormChange}
+                            />
+                        : <div/>
+                    }  
                 </Header>
-                
                 <SecondHeader>
                     <h2>
                         {replaceCharacter(replaceCharacters(String(weather.timezone)))}
@@ -227,7 +283,7 @@ class Home extends Component {
                     <h2>
                         {removeDecimal(weather.currently && weather.currently.temperature)}°F
                     </h2>
-                    <a href="/forecast">12 Hour Forecast</a>
+                    <Link to="/forecast">12 Hour Forecast</Link>
                 </SecondHeader>
                 <Unordered_Weather_List>
                     <Weather_Day_List> 
@@ -362,10 +418,7 @@ class Home extends Component {
                         </section>
                     </Weather_Day_List>
                 </Unordered_Weather_List>
-
-                {/* <TodayWeather weather={this.props.weather}/> */}
             </Home_Container>
-                // <EditModal/>
         )
     }
 }

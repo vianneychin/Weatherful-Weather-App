@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const EditContainer = styled.div`
+const EditForm = styled.form`
     font-family: 'Roboto', sans-serif;
     display: flex;
     flex-direction: column;
@@ -10,6 +10,9 @@ const EditContainer = styled.div`
     width: 45em;
     height: 30em;
     box-shadow: 0 2px 6px 0 black;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 4px 6px hsla(0, 0%, 0%, 0.2)
     /* display: none; */
 
 `
@@ -76,18 +79,18 @@ const InputContainer = styled.div`
 `
 
 const EditModal = (props) => 
-    <EditContainer>
+    <EditForm onSubmit={props.closeAndEdit}>
         <InputContainer>
-            <XButton>✖</XButton>
+            <XButton onClick={props.modalOffHandler}>×</XButton>
             <p>Change name:</p>
-            <input placeholder="name"/>
+            <input type="text" name="username" onChange={props.handleFormChange} value={props.nameToEdit.username} placeholder="name"/>
             <p>Change location:</p>
             <input placeholder="location"/>
         </InputContainer>
         <ButtonContainer>
             <button>Delete Account</button>
-            <button>Save Changes</button>
+            <button type="submit">Save Changes</button>
         </ButtonContainer>
-    </EditContainer>
+    </EditForm>
 
 export default EditModal
