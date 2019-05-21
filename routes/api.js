@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
   try {
     const weather = await fetch( "https://api.darksky.net/forecast/bed695cbee335748582f13a6271e393e/34.053691,-118.242767")
     console.log(weather)
-    weatherJson = await weather.json()
+    weatherJson = await weather
     return res.json({
       data: weatherJson,
       success: true
