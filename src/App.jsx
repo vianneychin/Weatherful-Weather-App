@@ -23,9 +23,7 @@ class App extends Component {
 
   getWeather = async () => {
     try {
-      const weather = await fetch(
-        '/api/weather'
-      )
+      const weather = await fetch('/api/weather')
       const weatherJson = await weather.json()
       return weatherJson
     } catch(err) {
