@@ -20,15 +20,11 @@ class App extends Component {
       })
     })
   }
-  doUpdateUser = (user) => {
-    this.setState({
-      username: user
-    })
-  } 
+
   getWeather = async () => {
     try {
       const weather = await fetch(
-        'http://localhost:3000/api/weather'
+        '/api/weather'
       )
       const weatherJson = await weather.json()
       return weatherJson
@@ -37,6 +33,9 @@ class App extends Component {
       return err
     }
   }
+
+  doUpdateUser = username => this.setState({username})
+
   render() {
     return (
       <div className="App">

@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/static/css/main.2efc2058.chunk.css",
+    "main.js": "/static/js/main.fa643083.chunk.js",
+    "main.js.map": "/static/js/main.fa643083.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+    "static/js/2.b0c395e2.chunk.js": "/static/js/2.b0c395e2.chunk.js",
+    "static/js/2.b0c395e2.chunk.js.map": "/static/js/2.b0c395e2.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.2cac0501f8860b84a5f2f14e7f01915e.js": "/precache-manifest.2cac0501f8860b84a5f2f14e7f01915e.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.2efc2058.chunk.css.map": "/static/css/main.2efc2058.chunk.css.map",
+    "static/media/Cloud-Rain.svg": "/static/media/Cloud-Rain.316ec331.svg",
+    "static/media/Cloud.svg": "/static/media/Cloud.79b3c647.svg",
+    "static/media/blue-clouds.mp4": "/static/media/blue-clouds.69279d94.mp4"
+  }
+}
