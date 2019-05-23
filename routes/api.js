@@ -4,9 +4,12 @@ const fetch = require('node-fetch')
 
 
 router.get('/', async (req, res) => {
+  
   try {
     const weather = await fetch( "https://api.darksky.net/forecast/bed695cbee335748582f13a6271e393e/34.053691,-118.242767")
-    console.log(weather)
+    console.log('hit')
+    const weatherJson = await weather.json()
+    // console.log(weatherJson)
     return res.json({
       data: weatherJson,
       success: true

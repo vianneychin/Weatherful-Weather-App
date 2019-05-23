@@ -40,7 +40,7 @@ class App extends Component {
         <Switch>
           <Route exact path={routes.ROOT} render={() => <EnterName doUpdateUser={this.doUpdateUser}/>} />
           {
-            this.state.username 
+            this.state.username
             ? [
                 <Route exact path={routes.HOME} render={() => <Home username={this.state.username} weather={this.state.weather}/>} />,
                 <Route exact path={routes.TODAY} render={() => <TodayWeather weather={this.state.weather} />} />
@@ -48,11 +48,10 @@ class App extends Component {
             :   <Redirect to={routes.ROOT} />
           }
           <Today weather={this.state.weather}/>
-        </Switch>    
+        </Switch>
       </div>
     )
   }
-  
 }
 
 export default App
